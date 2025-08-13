@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Check, Star } from 'lucide-react';
 
-const PricingSection = () => {
+interface PricingSectionProps {
+    onOpenContactModal?: (title?: string) => void;
+}
+
+const PricingSection = ({ onOpenContactModal }: PricingSectionProps) => {
     const { ref, isVisible } = useScrollReveal(0.2);
 
     const pricingPlans = [
@@ -216,10 +220,17 @@ const PricingSection = () => {
                                 </div>
 
                                 {/* CTA Button */}
-                                <button className={`w-full py-3 lg:py-4 px-6 rounded-lg font-semibold text-center transition-all duration-200 transform hover:scale-105 ${plan.popular
-                                    ? 'bg-gradient-to-r from-teal-500 to-emerald-600 text-white hover:from-teal-600 hover:to-emerald-700 shadow-lg'
-                                    : 'bg-gray-700 text-white hover:bg-gray-600 border border-gray-600 hover:border-teal-500'
-                                    }`}>
+                                <button
+                                    onClick={() => {
+                                        const title = plan.price === 'Free' ? 'Get Started Free' :
+                                            plan.price === 'Custom' ? 'Contact Sales' : 'Start Free Trial';
+                                        onOpenContactModal?.(title);
+                                    }}
+                                    className={`w-full py-3 lg:py-4 px-6 rounded-lg font-semibold text-center transition-all duration-200 transform hover:scale-105 ${plan.popular
+                                        ? 'bg-gradient-to-r from-teal-500 to-emerald-600 text-white hover:from-teal-600 hover:to-emerald-700 shadow-lg'
+                                        : 'bg-gray-700 text-white hover:bg-gray-600 border border-gray-600 hover:border-teal-500'
+                                        }`}
+                                >
                                     {plan.price === 'Free' ? 'Get Started Free' :
                                         plan.price === 'Custom' ? 'Contact Sales' : 'Start Free Trial'}
                                 </button>

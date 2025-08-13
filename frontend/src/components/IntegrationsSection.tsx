@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Zap, Building, Globe, Mail, Phone, FileText, MapPin, Camera } from 'lucide-react';
 
-const IntegrationsSection = () => {
+interface IntegrationsSectionProps {
+    onOpenContactModal?: (title?: string) => void;
+}
+
+const IntegrationsSection = ({ onOpenContactModal }: IntegrationsSectionProps) => {
     const { ref, isVisible } = useScrollReveal(0.2);
 
     const integrations = [
@@ -77,6 +81,7 @@ const IntegrationsSection = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={isVisible ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6, delay: 0.5 }}
+                            onClick={() => onOpenContactModal?.('Book A Demo')}
                             className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105"
                         >
                             Book A Demo

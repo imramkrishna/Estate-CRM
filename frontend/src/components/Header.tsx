@@ -6,7 +6,11 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const Header = () => {
+interface HeaderProps {
+    onOpenContactModal?: (title?: string) => void;
+}
+
+const Header = ({ onOpenContactModal }: HeaderProps) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
@@ -91,7 +95,10 @@ const Header = () => {
                         transition={{ delay: 0.4, duration: 0.6 }}
                         className="hidden md:flex items-center space-x-4"
                     >
-                        <button className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
+                        <button
+                            onClick={() => onOpenContactModal?.('Get Quote')}
+                            className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                        >
                             Get Quote
                         </button>
                     </motion.div>
@@ -134,7 +141,13 @@ const Header = () => {
                                 );
                             })}
                             <div className="pt-4 border-t border-gray-700 flex flex-col space-y-2">
-                                <button className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-6 py-2 rounded-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-200">
+                                <button
+                                    onClick={() => {
+                                        onOpenContactModal?.('Get Quote');
+                                        setIsMenuOpen(false);
+                                    }}
+                                    className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-6 py-2 rounded-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-200"
+                                >
                                     Get Quote
                                 </button>
                             </div>

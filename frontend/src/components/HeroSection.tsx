@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 
-const HeroSection = () => {
+interface HeroSectionProps {
+    onOpenContactModal?: (title?: string) => void;
+}
+
+const HeroSection = ({ onOpenContactModal }: HeroSectionProps) => {
     return (
         <section className="relative min-h-screen flex items-center justify-center bg-gray-950 overflow-hidden">
             {/* Background Elements */}
@@ -16,18 +20,6 @@ const HeroSection = () => {
             </div>
 
             <div className="relative p-24 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                {/* Notification Badge
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-teal-500/10 to-emerald-500/10 border border-teal-500/20 rounded-full px-6 py-2 mb-8"
-                >
-                    <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
-                    <span className="text-sm text-gray-300">New: Advanced Analytics Dashboard</span>
-                </motion.div> */}
-
-                {/* Main Headline */}
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -60,11 +52,17 @@ const HeroSection = () => {
                     transition={{ delay: 0.8, duration: 0.8 }}
                     className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 md:mb-16 px-4"
                 >
-                    <button className="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2 group">
+                    <button
+                        onClick={() => onOpenContactModal?.('Start Free Trial')}
+                        className="w-full sm:w-auto bg-teal-600 hover:bg-teal-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2 group"
+                    >
                         <span>Start Free Trial</span>
                         <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
-                    <button className="w-full sm:w-auto border border-teal-500 text-teal-400 hover:bg-teal-500 hover:text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-200 flex items-center justify-center space-x-2 group">
+                    <button
+                        onClick={() => onOpenContactModal?.('Book Demo')}
+                        className="w-full sm:w-auto border border-teal-500 text-teal-400 hover:bg-teal-500 hover:text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all duration-200 flex items-center justify-center space-x-2 group"
+                    >
                         <Play className="w-4 h-4 md:w-5 md:h-5" />
                         <span>Book Demo</span>
                     </button>

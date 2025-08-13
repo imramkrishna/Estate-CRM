@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { Star, Quote } from 'lucide-react';
 
-const TestimonialsSection = () => {
+interface TestimonialsSectionProps {
+    onOpenContactModal?: (title?: string) => void;
+}
+
+const TestimonialsSection = ({ onOpenContactModal }: TestimonialsSectionProps) => {
     const { ref, isVisible } = useScrollReveal(0.2);
 
     const testimonials = [
@@ -151,10 +155,16 @@ const TestimonialsSection = () => {
                             choose our CRM to grow their business.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 transform hover:scale-105">
+                            <button
+                                onClick={() => onOpenContactModal?.('Start Free Trial')}
+                                className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 transform hover:scale-105"
+                            >
                                 Start Free Trial
                             </button>
-                            <button className="border border-gray-600 hover:border-teal-500 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 hover:bg-teal-500/10">
+                            <button
+                                onClick={() => onOpenContactModal?.('Schedule Demo')}
+                                className="border border-gray-600 hover:border-teal-500 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 hover:bg-teal-500/10"
+                            >
                                 Schedule Demo
                             </button>
                         </div>
