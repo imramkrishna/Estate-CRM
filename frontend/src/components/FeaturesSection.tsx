@@ -165,7 +165,7 @@ const FeaturesSection = () => {
                     transition={{ duration: 0.8, delay: 0.8 }}
                     className="text-center mt-16"
                 >
-                    <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-12 py-4 rounded-lg font-semibold text-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    <button className="w-full sm:w-auto bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 lg:px-12 py-3 lg:py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
                         Explore All Features
                     </button>
                 </motion.div>

@@ -62,10 +62,10 @@ const Footer = () => {
         <footer className="bg-gray-900 border-t border-gray-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Main Footer Content */}
-                <div className="py-16">
-                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div className="py-12 lg:py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
                         {/* Company Info */}
-                        <div className="lg:col-span-2">
+                        <div className="md:col-span-2 lg:col-span-2">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -75,32 +75,32 @@ const Footer = () => {
                                     <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-teal-600 rounded-lg flex items-center justify-center mr-3">
                                         <Building className="w-6 h-6 text-white" />
                                     </div>
-                                    <span className="text-2xl font-bold text-white">RealEstate CRM</span>
+                                    <span className="text-xl lg:text-2xl font-bold text-white">Estate CRM</span>
                                 </div>
 
-                                <p className="text-gray-400 text-lg mb-8 max-w-md">
+                                <p className="text-gray-400 text-base lg:text-lg mb-6 lg:mb-8 max-w-md leading-relaxed">
                                     The most comprehensive CRM platform designed specifically for real estate professionals.
                                     Grow your business, manage leads, and close more deals.
                                 </p>
 
                                 {/* Contact Info */}
-                                <div className="space-y-4">
+                                <div className="space-y-3 lg:space-y-4 mb-6 lg:mb-8">
                                     <div className="flex items-center text-gray-400">
-                                        <Mail className="w-5 h-5 mr-3 text-teal-400" />
-                                        <span>contact@realestate-crm.com</span>
+                                        <Mail className="w-4 h-4 lg:w-5 lg:h-5 mr-3 text-teal-400 flex-shrink-0" />
+                                        <span className="text-sm lg:text-base">contact@estate-crm.com</span>
                                     </div>
                                     <div className="flex items-center text-gray-400">
-                                        <Phone className="w-5 h-5 mr-3 text-teal-400" />
-                                        <span>+1 (555) 123-4567</span>
+                                        <Phone className="w-4 h-4 lg:w-5 lg:h-5 mr-3 text-teal-400 flex-shrink-0" />
+                                        <span className="text-sm lg:text-base">+1 (555) 123-4567</span>
                                     </div>
-                                    <div className="flex items-center text-gray-400">
-                                        <MapPin className="w-5 h-5 mr-3 text-teal-400" />
-                                        <span>123 Business Ave, San Francisco, CA 94107</span>
+                                    <div className="flex items-start text-gray-400">
+                                        <MapPin className="w-4 h-4 lg:w-5 lg:h-5 mr-3 text-teal-400 flex-shrink-0 mt-0.5" />
+                                        <span className="text-sm lg:text-base">123 Business Ave, San Francisco, CA 94107</span>
                                     </div>
                                 </div>
 
                                 {/* Social Links */}
-                                <div className="flex space-x-4 mt-8">
+                                <div className="flex space-x-3 lg:space-x-4">
                                     {socialLinks.map((social, index) => (
                                         <motion.a
                                             key={index}
@@ -108,10 +108,10 @@ const Footer = () => {
                                             initial={{ opacity: 0, scale: 0.5 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ duration: 0.4, delay: index * 0.1 }}
-                                            className="w-10 h-10 bg-gray-800 hover:bg-teal-600 rounded-lg flex items-center justify-center transition-colors duration-200"
+                                            className="w-9 h-9 lg:w-10 lg:h-10 bg-gray-800 hover:bg-teal-600 rounded-lg flex items-center justify-center transition-colors duration-200"
                                             aria-label={social.name}
                                         >
-                                            <social.icon className="w-5 h-5 text-gray-400 hover:text-white" />
+                                            <social.icon className="w-4 h-4 lg:w-5 lg:h-5 text-gray-400 hover:text-white" />
                                         </motion.a>
                                     ))}
                                 </div>
@@ -119,29 +119,31 @@ const Footer = () => {
                         </div>
 
                         {/* Footer Links */}
-                        {footerSections.map((section, sectionIndex) => (
-                            <div key={sectionIndex}>
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.1 * sectionIndex }}
-                                >
-                                    <h3 className="text-white font-semibold text-lg mb-6">{section.title}</h3>
-                                    <ul className="space-y-4">
-                                        {section.links.map((link, linkIndex) => (
-                                            <li key={linkIndex}>
-                                                <a
-                                                    href="#"
-                                                    className="text-gray-400 hover:text-teal-400 transition-colors duration-200 text-sm"
-                                                >
-                                                    {link}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </motion.div>
-                            </div>
-                        ))}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 md:col-span-2 lg:col-span-3">
+                            {footerSections.map((section, sectionIndex) => (
+                                <div key={sectionIndex}>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.6, delay: 0.1 * sectionIndex }}
+                                    >
+                                        <h3 className="text-white font-semibold text-base lg:text-lg mb-4 lg:mb-6">{section.title}</h3>
+                                        <ul className="space-y-3 lg:space-y-4">
+                                            {section.links.map((link, linkIndex) => (
+                                                <li key={linkIndex}>
+                                                    <a
+                                                        href="#"
+                                                        className="text-gray-400 hover:text-teal-400 transition-colors duration-200 text-sm lg:text-base"
+                                                    >
+                                                        {link}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </motion.div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
 

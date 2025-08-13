@@ -31,28 +31,35 @@ const IntegrationsSection = () => {
                         transition={{ duration: 0.8 }}
                         className="space-y-6 lg:space-y-8 mb-12 lg:mb-0"
                     >
-                        <div className="w-16 h-16 bg-teal-500/20 rounded-2xl flex items-center justify-center mb-8">
-                            <Zap className="w-8 h-8 text-teal-400" />
-                        </div>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            className="inline-block bg-gradient-to-r from-teal-500/10 to-emerald-500/10 border border-teal-500/20 rounded-full px-6 py-2 mb-8"
+                        >
+                            <span className="text-teal-400 font-medium">Seamless Integrations</span>
+                        </motion.div>
 
                         <div>
                             <motion.h2
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 lg:mb-6 leading-tight"
+                                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 lg:mb-6 leading-tight"
                             >
-                                Instant Integration With
-                                <span className="block text-white">3rd party platforms</span>
+                                Connect With All Your
+                                <span className="block bg-gradient-to-r from-teal-400 to-emerald-500 bg-clip-text text-transparent">
+                                    Favorite Platforms
+                                </span>
                             </motion.h2>
 
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                                 transition={{ duration: 0.6, delay: 0.3 }}
-                                className="text-gray-400 text-lg mb-2 font-medium"
+                                className="text-teal-400 text-lg mb-4 font-medium"
                             >
-                                So That You Don't Miss Even a Single Lead
+                                Never Miss a Single Lead Again
                             </motion.p>
                         </div>
 
@@ -60,11 +67,10 @@ const IntegrationsSection = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={isVisible ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="text-gray-400 text-base leading-relaxed"
+                            className="text-gray-300 text-lg leading-relaxed"
                         >
-                            Leadrat allows you to seamlessly integrate with 3rd party platforms and import all
-                            of the lead data at one place. Say goodbye to manual work and adopt Leadrat
-                            automation to propel significantly better lead conversions
+                            Seamlessly integrate with 30+ third-party platforms and import all lead data in one place.
+                            Say goodbye to manual work and embrace automation for significantly better lead conversions.
                         </motion.p>
 
                         <motion.button
