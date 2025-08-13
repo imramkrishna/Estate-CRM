@@ -15,8 +15,8 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(20,184,166,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(20,184,166,0.1)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse" />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                {/* Notification Badge */}
+            <div className="relative p-24 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                {/* Notification Badge
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -25,7 +25,7 @@ const HeroSection = () => {
                 >
                     <span className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
                     <span className="text-sm text-gray-300">New: Advanced Analytics Dashboard</span>
-                </motion.div>
+                </motion.div> */}
 
                 {/* Main Headline */}
                 <motion.h1

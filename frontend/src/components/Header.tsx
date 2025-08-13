@@ -67,12 +67,12 @@ const Header = () => {
                                     transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
                                     className="relative group"
                                 >
-                                    <Link 
+                                    <Link
                                         href={item.href}
                                         className={`text-lg transition-colors duration-200 ${isActive
                                             ? 'text-white font-semibold'
                                             : 'text-gray-300 hover:text-white'
-                                        }`}
+                                            }`}
                                     >
                                         {item.name}
                                     </Link>
@@ -120,13 +120,13 @@ const Header = () => {
                             {navigationItems.map((item) => {
                                 const isActive = pathname === item.href;
                                 return (
-                                    <Link 
+                                    <Link
                                         key={item.name}
                                         href={item.href}
                                         className={`transition-colors duration-200 text-left ${isActive
                                             ? 'text-white font-semibold'
                                             : 'text-gray-300 hover:text-white'
-                                        }`}
+                                            }`}
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         {item.name}
