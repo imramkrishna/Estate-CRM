@@ -1,68 +1,89 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ParticleBackground from '@/components/ParticleBackground';
+import ContactModal from '@/components/ContactModal';
+import ChatWidget from '@/components/ChatWidget';
 import { MapPin, Clock, DollarSign, Users, Coffee, Heart, Zap, Award } from 'lucide-react';
 
 export default function CareersPage() {
-    const jobOpenings = [
-        {
-            title: 'Senior Frontend Developer',
-            department: 'Engineering',
-            location: 'San Francisco, CA / Remote',
-            type: 'Full-time',
-            salary: '$120k - $160k',
-            description: 'Build beautiful, responsive user interfaces for our real estate CRM platform.',
-            requirements: ['5+ years React experience', 'TypeScript proficiency', 'UI/UX design skills']
-        },
-        {
-            title: 'Product Marketing Manager',
-            department: 'Marketing',
-            location: 'New York, NY / Remote',
-            type: 'Full-time',
-            salary: '$100k - $130k',
-            description: 'Drive product marketing strategy and go-to-market initiatives.',
-            requirements: ['B2B SaaS experience', 'Content creation skills', 'Analytics proficiency']
-        },
-        {
-            title: 'Customer Success Manager',
-            department: 'Customer Success',
-            location: 'Austin, TX / Remote',
-            type: 'Full-time',
-            salary: '$80k - $110k',
-            description: 'Help our customers achieve success with Estate CRM platform.',
-            requirements: ['Customer-facing experience', 'Real estate knowledge', 'Strong communication']
-        },
-        {
-            title: 'DevOps Engineer',
-            department: 'Engineering',
-            location: 'Seattle, WA / Remote',
-            type: 'Full-time',
-            salary: '$130k - $170k',
-            description: 'Build and maintain our cloud infrastructure and deployment pipelines.',
-            requirements: ['AWS/GCP experience', 'Kubernetes knowledge', 'CI/CD expertise']
-        },
-        {
-            title: 'Sales Development Representative',
-            department: 'Sales',
-            location: 'Miami, FL / Remote',
-            type: 'Full-time',
-            salary: '$60k - $80k + Commission',
-            description: 'Generate qualified leads and build relationships with potential customers.',
-            requirements: ['Sales experience', 'CRM knowledge', 'Real estate interest']
-        },
-        {
-            title: 'UX/UI Designer',
-            department: 'Design',
-            location: 'Los Angeles, CA / Remote',
-            type: 'Full-time',
-            salary: '$90k - $120k',
-            description: 'Design intuitive and beautiful user experiences for our platform.',
-            requirements: ['Design portfolio', 'Figma proficiency', 'User research experience']
-        }
-    ];
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState('Contact Us');
+
+    const openContactModal = (title: string = 'Contact Us') => {
+        setModalTitle(title);
+        setIsContactModalOpen(true);
+    };
+
+    const closeContactModal = () => {
+        setIsContactModalOpen(false);
+    };
+    const jobOpenings: Array<{
+        title: string;
+        department: string;
+        location: string;
+        type: string;
+        salary: string;
+        description: string;
+        requirements: string[];
+    }> = [];
+    // {
+    //     title: 'Senior Frontend Developer',
+    //     department: 'Engineering',
+    //     location: 'San Francisco, CA / Remote',
+    //     type: 'Full-time',
+    //     salary: '$120k - $160k',
+    //     description: 'Build beautiful, responsive user interfaces for our real estate CRM platform.',
+    //     requirements: ['5+ years React experience', 'TypeScript proficiency', 'UI/UX design skills']
+    // },
+    // {
+    //     title: 'Product Marketing Manager',
+    //     department: 'Marketing',
+    //     location: 'New York, NY / Remote',
+    //     type: 'Full-time',
+    //     salary: '$100k - $130k',
+    //     description: 'Drive product marketing strategy and go-to-market initiatives.',
+    //     requirements: ['B2B SaaS experience', 'Content creation skills', 'Analytics proficiency']
+    // },
+    // {
+    //     title: 'Customer Success Manager',
+    //     department: 'Customer Success',
+    //     location: 'Austin, TX / Remote',
+    //     type: 'Full-time',
+    //     salary: '$80k - $110k',
+    //     description: 'Help our customers achieve success with Estate CRM platform.',
+    //     requirements: ['Customer-facing experience', 'Real estate knowledge', 'Strong communication']
+    // },
+    // {
+    //     title: 'DevOps Engineer',
+    //     department: 'Engineering',
+    //     location: 'Seattle, WA / Remote',
+    //     type: 'Full-time',
+    //     salary: '$130k - $170k',
+    //     description: 'Build and maintain our cloud infrastructure and deployment pipelines.',
+    //     requirements: ['AWS/GCP experience', 'Kubernetes knowledge', 'CI/CD expertise']
+    // },
+    // {
+    //     title: 'Sales Development Representative',
+    //     department: 'Sales',
+    //     location: 'Miami, FL / Remote',
+    //     type: 'Full-time',
+    //     salary: '$60k - $80k + Commission',
+    //     description: 'Generate qualified leads and build relationships with potential customers.',
+    //     requirements: ['Sales experience', 'CRM knowledge', 'Real estate interest']
+    // },
+    // {
+    //     title: 'UX/UI Designer',
+    //     department: 'Design',
+    //     location: 'Los Angeles, CA / Remote',
+    //     type: 'Full-time',
+    //     salary: '$90k - $120k',
+    //     description: 'Design intuitive and beautiful user experiences for our platform.',
+    //     requirements: ['Design portfolio', 'Figma proficiency', 'User research experience']
+    // }
 
     const benefits = [
         {
@@ -130,7 +151,7 @@ export default function CareersPage() {
     return (
         <div className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
             <ParticleBackground />
-            <Header />
+            <Header onOpenContactModal={openContactModal} />
 
             <main className="pt-16">
                 {/* Hero Section */}
@@ -306,7 +327,10 @@ export default function CareersPage() {
                                         </div>
                                     </div>
 
-                                    <button className="w-full bg-gradient-to-r from-teal-500 to-emerald-600 text-white py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                    <button
+                                        onClick={() => openContactModal('Apply Now')}
+                                        className="w-full bg-gradient-to-r from-teal-500 to-emerald-600 text-white py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                                    >
                                         Apply Now
                                     </button>
                                 </motion.div>
@@ -331,10 +355,16 @@ export default function CareersPage() {
                                 Send us your resume and we'll keep you in mind for future opportunities.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                <button
+                                    onClick={() => openContactModal('Send Resume')}
+                                    className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                                >
                                     Send Resume
                                 </button>
-                                <button className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10">
+                                <button
+                                    onClick={() => openContactModal('Learn More About Us')}
+                                    className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10"
+                                >
                                     Learn More About Us
                                 </button>
                             </div>
@@ -344,6 +374,12 @@ export default function CareersPage() {
             </main>
 
             <Footer />
+            <ChatWidget />
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={closeContactModal}
+                title={modalTitle}
+            />
         </div>
     );
 }

@@ -1,12 +1,26 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ParticleBackground from '@/components/ParticleBackground';
+import ContactModal from '@/components/ContactModal';
+import ChatWidget from '@/components/ChatWidget';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Headphones, Zap, Users } from 'lucide-react';
 
 export default function ContactPage() {
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState('Contact Us');
+
+    const openContactModal = (title: string = 'Contact Us') => {
+        setModalTitle(title);
+        setIsContactModalOpen(true);
+    };
+
+    const closeContactModal = () => {
+        setIsContactModalOpen(false);
+    };
     const contactMethods = [
         {
             icon: Mail,
@@ -86,7 +100,7 @@ export default function ContactPage() {
     return (
         <div className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
             <ParticleBackground />
-            <Header />
+            <Header onOpenContactModal={openContactModal} />
 
             <main className="pt-16">
                 {/* Hero Section */}
@@ -266,7 +280,10 @@ export default function ContactPage() {
                                         For urgent issues, our live chat is the fastest way to get support.
                                         Our team typically responds within minutes during business hours.
                                     </p>
-                                    <button className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                    <button
+                                        onClick={() => openContactModal('Live Chat Support')}
+                                        className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                                    >
                                         Start Live Chat
                                     </button>
                                 </div>
@@ -326,7 +343,10 @@ export default function ContactPage() {
                                         </div>
                                     </div>
 
-                                    <button className="w-full mt-6 border border-gray-600 hover:border-teal-500 text-white py-3 rounded-lg font-semibold transition-colors duration-200 hover:bg-teal-500/10">
+                                    <button
+                                        onClick={() => openContactModal('Get Directions')}
+                                        className="w-full mt-6 border border-gray-600 hover:border-teal-500 text-white py-3 rounded-lg font-semibold transition-colors duration-200 hover:bg-teal-500/10"
+                                    >
                                         Get Directions
                                     </button>
                                 </motion.div>
@@ -389,7 +409,10 @@ export default function ContactPage() {
                             className="text-center mt-12"
                         >
                             <p className="text-gray-300 mb-6">Still have questions?</p>
-                            <button className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                            <button
+                                onClick={() => openContactModal('Help Center Support')}
+                                className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                            >
                                 Browse Help Center
                             </button>
                         </motion.div>
@@ -398,6 +421,13 @@ export default function ContactPage() {
             </main>
 
             <Footer />
+            <ChatWidget />
+
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={closeContactModal}
+                title={modalTitle}
+            />
         </div>
     );
 }

@@ -1,12 +1,26 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ParticleBackground from '@/components/ParticleBackground';
-import { Handshake, TrendingUp, Users, Globe, Award, Shield, Target, DollarSign } from 'lucide-react';
+import ContactModal from '@/components/ContactModal';
+import ChatWidget from '@/components/ChatWidget';
+import { Users, DollarSign, Award, TrendingUp, CheckCircle, ArrowRight, Target, Globe, Shield } from 'lucide-react';
 
 export default function ChannelPartnerPage() {
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState('Contact Us');
+
+    const openContactModal = (title: string = 'Contact Us') => {
+        setModalTitle(title);
+        setIsContactModalOpen(true);
+    };
+
+    const closeContactModal = () => {
+        setIsContactModalOpen(false);
+    };
     const benefits = [
         {
             icon: DollarSign,
@@ -122,7 +136,7 @@ export default function ChannelPartnerPage() {
     return (
         <div className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
             <ParticleBackground />
-            <Header />
+            <Header onOpenContactModal={openContactModal} />
 
             <main className="pt-16">
                 {/* Hero Section */}
@@ -150,10 +164,16 @@ export default function ChannelPartnerPage() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                <button
+                                    onClick={() => openContactModal('Become a Partner')}
+                                    className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                                >
                                     Become a Partner
                                 </button>
-                                <button className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10">
+                                <button
+                                    onClick={() => openContactModal('Download Partner Kit')}
+                                    className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10"
+                                >
                                     Download Partner Kit
                                 </button>
                             </div>
@@ -251,10 +271,13 @@ export default function ChannelPartnerPage() {
                                         ))}
                                     </div>
 
-                                    <button className={`w-full mt-8 py-3 px-6 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 ${type.popular
+                                    <button
+                                        onClick={() => openContactModal('Apply Now')}
+                                        className={`w-full mt-8 py-3 px-6 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105 ${type.popular
                                             ? 'bg-gradient-to-r from-teal-500 to-emerald-600 text-white hover:from-teal-600 hover:to-emerald-700'
                                             : 'bg-gray-700 text-white hover:bg-gray-600 border border-gray-600 hover:border-teal-500'
-                                        }`}>
+                                            }`}
+                                    >
                                         Apply Now
                                     </button>
                                 </motion.div>
@@ -349,10 +372,16 @@ export default function ChannelPartnerPage() {
                                 Join our growing network of successful partners and start earning today.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                <button
+                                    onClick={() => openContactModal('Apply Now')}
+                                    className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                                >
                                     Apply Now
                                 </button>
-                                <button className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10">
+                                <button
+                                    onClick={() => openContactModal('Schedule Call')}
+                                    className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10"
+                                >
                                     Schedule Call
                                 </button>
                             </div>
@@ -362,6 +391,12 @@ export default function ChannelPartnerPage() {
             </main>
 
             <Footer />
+            <ChatWidget />
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={closeContactModal}
+                title={modalTitle}
+            />
         </div>
     );
 }

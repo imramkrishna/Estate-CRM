@@ -34,22 +34,14 @@ const Header = ({ onOpenContactModal }: HeaderProps) => {
     }, []);
 
     return (
-        <motion.header
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+        <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-950/95 backdrop-blur-sm border-b border-gray-800' : 'bg-gray-950/80'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.2, duration: 0.6 }}
-                        className="flex items-center space-x-3"
-                    >
+                    <div className="flex items-center space-x-3">
                         <Link href="/" className="flex items-center space-x-3">
                             <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center">
                                 <span className="text-white font-bold text-sm md:text-xl">🏠</span>
@@ -57,18 +49,15 @@ const Header = ({ onOpenContactModal }: HeaderProps) => {
                             <span className="text-lg md:text-2xl font-bold text-white">RealEstate CRM</span>
                             <span className="text-xs bg-teal-500 text-white px-2 py-1 rounded-full hidden sm:inline">BETA</span>
                         </Link>
-                    </motion.div>
+                    </div>
 
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center space-x-8">
                         {navigationItems.map((item, index) => {
                             const isActive = pathname === item.href;
                             return (
-                                <motion.div
+                                <div
                                     key={item.name}
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.3 + index * 0.1, duration: 0.6 }}
                                     className="relative group"
                                 >
                                     <Link
@@ -83,27 +72,20 @@ const Header = ({ onOpenContactModal }: HeaderProps) => {
                                     {isActive && (
                                         <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-400 to-emerald-500 rounded-full" />
                                     )}
-                                </motion.div>
+                                </div>
                             );
                         })}
                     </nav>
 
                     {/* CTA Buttons */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4, duration: 0.6 }}
-                        className="hidden md:flex items-center space-x-4"
-                    >
+                    <div className="hidden md:flex items-center space-x-4">
                         <button
                             onClick={() => onOpenContactModal?.('Get Quote')}
-                            className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-4 md:px-8 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                            className="bg-gradient-to-r from-teal-500 to-teal-600 text-white px-2 md:px-8 py-2 md:py-3 rounded-full font-semibold text-sm md:text-lg hover:from-teal-600 hover:to-teal-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
                         >
                             Get Quote
                         </button>
-                    </motion.div>
-
-                    {/* Mobile Menu Button */}
+                    </div>                    {/* Mobile Menu Button */}
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -155,7 +137,7 @@ const Header = ({ onOpenContactModal }: HeaderProps) => {
                     </motion.div>
                 )}
             </div>
-        </motion.header>
+        </header>
     );
 };
 

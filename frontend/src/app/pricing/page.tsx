@@ -1,13 +1,27 @@
 'use client';
 
+import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ParticleBackground from '@/components/ParticleBackground';
 import PricingSection from '@/components/PricingSection';
+import ContactModal from '@/components/ContactModal';
+import ChatWidget from '@/components/ChatWidget';
 import { motion } from 'framer-motion';
 import { Check, HelpCircle, Shield, Award } from 'lucide-react';
 
 export default function PricingPage() {
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState('Contact Us');
+
+    const openContactModal = (title: string = 'Contact Us') => {
+        setModalTitle(title);
+        setIsContactModalOpen(true);
+    };
+
+    const closeContactModal = () => {
+        setIsContactModalOpen(false);
+    };
     const faqs = [
         {
             question: "Can I change my plan anytime?",
@@ -56,7 +70,7 @@ export default function PricingPage() {
     return (
         <div className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
             <ParticleBackground />
-            <Header />
+            <Header onOpenContactModal={openContactModal} />
 
             <main className="pt-16">
                 {/* Hero Section */}
@@ -87,7 +101,7 @@ export default function PricingPage() {
                 </section>
 
                 {/* Pricing Section */}
-                <PricingSection />
+                <PricingSection onOpenContactModal={openContactModal} />
 
                 {/* Why Choose Us Section */}
                 <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
@@ -176,10 +190,16 @@ export default function PricingPage() {
                                 to grow their business.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                <button
+                                    onClick={() => openContactModal('Start Free Trial')}
+                                    className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                                >
                                     Start Free Trial
                                 </button>
-                                <button className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10">
+                                <button
+                                    onClick={() => openContactModal('Contact Sales')}
+                                    className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10"
+                                >
                                     Contact Sales
                                 </button>
                             </div>
@@ -189,6 +209,12 @@ export default function PricingPage() {
             </main>
 
             <Footer />
+            <ChatWidget />
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={closeContactModal}
+                title={modalTitle}
+            />
         </div>
     );
 }

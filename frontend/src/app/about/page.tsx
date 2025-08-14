@@ -1,12 +1,26 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ParticleBackground from '@/components/ParticleBackground';
+import ContactModal from '@/components/ContactModal';
+import ChatWidget from '@/components/ChatWidget';
 import { Users, Award, Globe, Heart, Target, Zap } from 'lucide-react';
 
 export default function AboutPage() {
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [modalTitle, setModalTitle] = useState('Contact Us');
+
+    const openContactModal = (title: string = 'Contact Us') => {
+        setModalTitle(title);
+        setIsContactModalOpen(true);
+    };
+
+    const closeContactModal = () => {
+        setIsContactModalOpen(false);
+    };
     const stats = [
         { value: '10,000+', label: 'Happy Customers' },
         { value: '500+', label: 'Companies Served' },
@@ -77,7 +91,7 @@ export default function AboutPage() {
     return (
         <div className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
             <ParticleBackground />
-            <Header />
+            <Header onOpenContactModal={openContactModal} />
 
             <main className="pt-16">
                 {/* Hero Section */}
@@ -282,10 +296,16 @@ export default function AboutPage() {
                                 Join thousands of successful real estate professionals who trust Estate CRM.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                                <button
+                                    onClick={() => openContactModal('Start Free Trial')}
+                                    className="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-600 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+                                >
                                     Start Free Trial
                                 </button>
-                                <button className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10">
+                                <button
+                                    onClick={() => openContactModal('Schedule Demo')}
+                                    className="border border-gray-600 hover:border-teal-500 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 hover:bg-teal-500/10"
+                                >
                                     Schedule Demo
                                 </button>
                             </div>
@@ -295,6 +315,12 @@ export default function AboutPage() {
             </main>
 
             <Footer />
+            <ChatWidget />
+            <ContactModal
+                isOpen={isContactModalOpen}
+                onClose={closeContactModal}
+                title={modalTitle}
+            />
         </div>
     );
 }
