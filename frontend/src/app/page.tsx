@@ -43,8 +43,6 @@ export default function Home() {
         <LeadsSection />
         <FeatureShowcaseSection />
         <IntegrationsSection onOpenContactModal={openContactModal} />
-        <TestimonialsSection onOpenContactModal={openContactModal} />
-        <PricingSection onOpenContactModal={openContactModal} />
       </main>
       <Footer />
       <ChatWidget />
