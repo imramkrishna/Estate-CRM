@@ -130,13 +130,13 @@ const PricingSection = ({ onOpenContactModal }: PricingSectionProps) => {
     ];
 
     return (
-        <section ref={ref} className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
-            <div className="max-w-7xl mx-auto">
+        <section ref={ref} className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 min-h-[400px]">
+            <div className="max-w-7xl mx-auto w-full">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
-                    animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                    animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-12 sm:mb-16"
                 >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -170,14 +170,14 @@ const PricingSection = ({ onOpenContactModal }: PricingSectionProps) => {
                     </motion.p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
                     {pricingPlans.map((plan, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
-                            animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.1 * index }}
-                            className={`relative group h-fit ${plan.popular ? 'lg:scale-105' : ''
+                            className={`relative group h-fit w-full min-w-0 ${plan.popular ? 'lg:scale-105' : ''
                                 }`}
                         >
                             {/* Popular Badge */}
